@@ -1,5 +1,8 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
+var Wallet = artifacts.require('Wallet');
 
-module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
+//Somehow adding the network as a second parameter solves the error - research why
+module.exports = function (deployer, network, accounts) {
+  const _approvers = [accounts[0], accounts[1], accounts[2]];
+  const _quorum = 2;
+  deployer.deploy(Wallet, _approvers, _quorum);
 };
